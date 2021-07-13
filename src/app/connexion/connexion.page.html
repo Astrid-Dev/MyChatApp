@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar color="ducknote">
+    <ion-segment color="primary" mode = "md" [(ngModel)]="segment" (ionChange)="segmentChange($event)">
+      <ion-segment-button value="0">
+        <ion-label style="font-size: 1.3em; font-weight: bold">{{param.getParametre().inscription}}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="1">
+        <ion-label style="font-size: 1.3em; font-weight: bold">{{param.getParametre().connectioon}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-buttons slot="end" style="background-color: greenyellow">
+      <ion-button (click)="presentAlert()">
+        <ion-icon size= "large" name="language" color="texte"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides  #slides pager="false" [options]="slideOps" (ionSlideDidChange)="slidesChanged(slides)" (ionSlidesDidLoad)="slidesChanged(slides)" style="height: 100%">
+    <ion-slide style="display: flex; flex-direction: column">
+      <ion-content>
+        <form [formGroup]="formGroup">
+          <div style="display: flex; justify-content: center; text-align: center;margin-top: 20px">
+            <div style="height: 200px; width: 200px; text-align: center; display: inline" class = "flex">
+              <div class="img-box" style="position: relative; overflow: hidden">
+                <img [src]="photoPath" width="200px" height="200px" style="border-radius: 50%; display: block">
+                <ion-fab-button color="ducknote" (click)="filme()" style="position: absolute; bottom: 0; right: 0">
+                  <ion-icon color="texte" name="camera"></ion-icon>
+                </ion-fab-button>
+              </div>
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">{{param.getParametre().nomUser}}</ion-label>
+            <ion-input placeholder="nom"
+                       clearInput="true"
+                       formControlName="name"
+                       maxlength="16"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="(formGroup.controls.name.dirty || formGroup.controls.name.touched) && formGroup.controls.name.errors" class="errors">
+            <span *ngIf="formGroup.controls.name.errors?.required">{{param.getParametre().fauxNomUser}}</span>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">{{param.getParametre().email}}</ion-label>
+            <ion-input placeholder="xy@abc.ef"
+                       autofocus="true"
+                       clearInput = "true"
+                       formControlName="email"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="(formGroup.controls.email.dirty || formGroup.controls.email.touched) && formGroup.controls.email.errors" class="errors">
+            <span *ngIf="formGroup.controls.email.errors?.required">{{param.getParametre().pasDeMail}}</span>
+            <span *ngIf="formGroup.controls.email.errors?.email">{{param.getParametre().fauxMail}}</span>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">{{param.getParametre().telephone2}}</ion-label>
+            <ion-input placeholder="6 XX XX XX XX"
+                       clearInput="true"
+                       type = "number"
+                       formControlName="phone"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="(formGroup.controls.phone.dirty || formGroup.controls.phone.touched) && formGroup.controls.phone.errors" class="errors">
+            <span *ngIf="formGroup.controls.phone.errors?.required">{{param.getParametre().pasDeTelephoneD}}</span>
+            <span *ngIf="!formGroup.controls.phone.errors?.required">{{param.getParametre().fauxTelephone}}</span>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">{{param.getParametre().motDePasse}}</ion-label>
+            <ion-input clearInput="true"
+                       [type]="passwordType"
+                       formControlName="password"
+            ></ion-input>
+            <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)="hideShowPassword()"></ion-icon>
+          </ion-item>
+          <div *ngIf="(formGroup.controls.password.dirty || formGroup.controls.password.touched) && formGroup.controls.password.errors" class="errors">
+            <span *ngIf="formGroup.controls.password.errors?.required">{{param.getParametre().pasDeMotDePasse}}</span>
+            <span *ngIf="!formGroup.controls.password.errors?.required">{{param.getParametre().fauxMotDePasse}}</span>
+          </div>
+
+        </form>
+        <ion-button (click)="signUp2()" style="font-family: 'Cooper Black'; font-size: 1.1em; margin-top: 40px" mode="ios" color="ducknote"  [disabled]="!formGroup.valid">{{param.getParametre().sinscrire}}</ion-button>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide style="display: flex; flex-direction: column; height: 100%; justify-content: flex-start">
+      <ion-content>
+
+        <form [formGroup]="formGroup2" style="margin-top: 30%">
+          <ion-item>
+            <ion-label position="floating">{{param.getParametre().email}}</ion-label>
+            <ion-input placeholder="xy@abc.ef"
+                       autofocus="true"
+                       clearInput = "true"
+                       formControlName="email2"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="(formGroup2.controls.email2.dirty || formGroup2.controls.email2.touched) && formGroup2.controls.email2.errors" class="errors">
+            <span *ngIf="formGroup2.controls.email2.errors?.required">{{param.getParametre().pasDeMail}}</span>
+            <span *ngIf="formGroup2.controls.email2.errors?.email">{{param.getParametre().fauxMail}}</span>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">{{param.getParametre().motDePasse}}</ion-label>
+            <ion-input clearInput="true"
+                       [type]="passwordType"
+                       formControlName="password2"
+            ></ion-input>
+            <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)="hideShowPassword()"></ion-icon>
+          </ion-item>
+          <div *ngIf="(formGroup2.controls.password2.dirty || formGroup2.controls.password2.touched) && formGroup2.controls.password2.errors" class="errors">
+            <span *ngIf="formGroup2.controls.password2.errors?.required">{{param.getParametre().pasDeMotDePasse}}</span>
+            <span *ngIf="!formGroup2.controls.password2.errors?.required">{{param.getParametre().fauxMotDePasse2}}</span>
+          </div>
+
+        </form>
+        <ion-button (click)="SignIn2()"  style="font-family: 'Cooper Black'; font-size: 1.1em; margin-top: 40px" mode="ios" color="ducknote"  [disabled]="!formGroup2.valid">{{param.getParametre().seconnecter}}</ion-button>
+        <p style="text-align: right">
+          <ion-label style="margin-top: 50%; color: #3a7be0">{{param.getParametre().motDePasseOublie}}</ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </p>
+      </ion-content>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

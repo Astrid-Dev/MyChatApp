@@ -1,0 +1,120 @@
+<ion-header style="height: 10%;">
+  <ion-toolbar [color]="couleurApp.getCouleurApp().toolbar">
+    <ion-buttons slot="start" style="padding-left: 0; display: flex; justify-content: flex-start;">
+      <ion-icon routerLink="../home" name="arrow-back" size="small" [color]="couleurApp.getCouleurApp().iconFocus"></ion-icon>
+      <ion-avatar style="background-color: white"></ion-avatar>
+    </ion-buttons>
+    <ion-title (click)="chatService.ouvreInfoChat()">Mon Groupe</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name = "videocam" slot = "icon-only"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name = "call" slot = "icon-only"></ion-icon>
+      </ion-button>
+      <ion-button style="margin-right: 0px" (click)="presentPopover($event)">
+        <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name = "ellipsis-vertical" slot = "icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let message of messages | async">
+      <ion-col size="9" [offset]="message.myMsg ? 3 : 0" [ngClass]="{'my-message': message.myMsg, 'other-message': !message.myMsg}" class="message">
+        <b>{{message.fromName}}</b><br>
+        <span>{{message.msg}}</span>
+        <div class="time ion-text-right"><br>{{message.createdAt.toMillis() | date:'short'}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+
+  <ion-toolbar *ngIf="estThemCLair()" color="light">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="1">
+        <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name = "happy-outline" size="large">
+          <<ion-ripple-effect></ion-ripple-effect>
+        </ion-icon>
+      </ion-col>
+      <ion-col size = "9">
+        <ion-textarea style="display: flex; flex-direction: row-reverse; text-align: left" [placeholder]= param.getParametre().entrerMessage autoGrow="true" class="message-input" rows = "1" maxlength="500" [(ngModel)]="newMsg">
+          <ion-buttons slot="end">
+            <ion-button *ngIf="newMsg !== ''">
+              <ion-icon name = "perso" color = "danger" size="large"></ion-icon>
+            </ion-button>
+            <ion-button>
+              <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name="document-attach-outline" size="large"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="newMsg === ''">
+              <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name = "camera-outline" size="large"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-fab-button style="margin-left: 5px" color="ducknote" *ngIf="newMsg === ''">
+          <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name="mic"  size="large" color=""></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="sendMessage()" *ngIf="newMsg !== ''" style="margin-left: 5px" color="ducknote">
+          <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name="send" size="large"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+<!--      <ion-col size="2" *ngIf="newMsg !== ''">-->
+<!--        <ion-button expand="block" fill="clear" color="primary" class="msg-btn" (click)="sendMessage()">-->
+<!--          <ion-icon name="send" slot="icon-only" size="large"></ion-icon>-->
+<!--        </ion-button>-->
+<!--        -->
+<!--      </ion-col>-->
+<!--      <ion-col size="2" *ngIf="newMsg === ''" style="text-align: center; background-color: #f1b004; ">-->
+<!--        <ion-icon name="mic"  size="large" color=""></ion-icon>-->
+<!--      </ion-col>-->
+    </ion-row>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="!estThemCLair()" color="dark">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="1">
+        <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name = "happy-outline" size="large">
+          <<ion-ripple-effect></ion-ripple-effect>
+        </ion-icon>
+      </ion-col>
+      <ion-col size = "9">
+        <ion-textarea style="display: flex; flex-direction: row-reverse; text-align: left" [placeholder]="param.getParametre().entrerMessage" autoGrow="true" class="message-input" rows = "1" maxlength="500" [(ngModel)]="newMsg">
+          <ion-buttons slot="end">
+            <ion-button *ngIf="newMsg !== ''">
+              <ion-icon name = "perso" color = "danger" size="large"></ion-icon>
+            </ion-button>
+            <ion-button>
+              <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name="document-attach-outline" size="large"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="newMsg === ''">
+              <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name = "camera-outline" size="large"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-fab-button style="margin-left: 5px" color="ducknote" *ngIf="newMsg === ''">
+          <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name="mic"  size="large" color=""></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="sendMessage()" *ngIf="newMsg !== ''" style="margin-left: 5px" color="ducknote">
+          <ion-icon [color]="couleurApp.getCouleurApp().iconFocus" name="send" size="large"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+      <!--      <ion-col size="2" *ngIf="newMsg !== ''">-->
+      <!--        <ion-button expand="block" fill="clear" color="primary" class="msg-btn" (click)="sendMessage()">-->
+      <!--          <ion-icon name="send" slot="icon-only" size="large"></ion-icon>-->
+      <!--        </ion-button>-->
+      <!--        -->
+      <!--      </ion-col>-->
+      <!--      <ion-col size="2" *ngIf="newMsg === ''" style="text-align: center; background-color: #f1b004; ">-->
+      <!--        <ion-icon name="mic"  size="large" color=""></ion-icon>-->
+      <!--      </ion-col>-->
+    </ion-row>
+  </ion-toolbar>
+
+</ion-footer>

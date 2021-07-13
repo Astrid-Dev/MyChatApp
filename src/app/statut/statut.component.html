@@ -1,0 +1,35 @@
+<ion-fab slot="fixed" horizontal="end" vertical="bottom">
+  <ion-fab-button (click)="status.openModal2()" *ngIf="plusStatut" style="margin-bottom: 10px" [color]="couleursAppService.getCouleurApp().iconApp">
+    <ion-icon name="pencil" [color]="couleursAppService.getCouleurApp().iconSimple"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-button style="margin-bottom: 10px" *ngIf="plusStatut" [color]="couleursAppService.getCouleurApp().iconApp">
+    <ion-icon name = "camera" [color]="couleursAppService.getCouleurApp().iconSimple"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-button *ngIf="plusStatut" (click)="plusStatut = false" [color]="couleursAppService.getCouleurApp().iconApp">
+    <ion-icon name = "close-outline" [color]="couleursAppService.getCouleurApp().iconSimple"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-button *ngIf="!plusStatut" (click)="plusStatut = true" [color]="couleursAppService.getCouleurApp().iconApp">
+    <ion-icon name = "add" [color]="couleursAppService.getCouleurApp().iconSimple"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-list [style]="{backgroundColor: couleursAppService.getCouleurApp().list}">
+  <ion-item (click)="afficheStatut()" [color]="couleursAppService.getCouleurApp().item">
+    <ion-buttons class="container">
+      <div>
+        <ion-avatar class="img-box" style="position: relative; overflow: hidden">
+          <img [src]="param.monProfile" width="60px" height="60px" style="border-radius: 50%; display: block">
+          <ion-fab-button size="small" style="position: absolute; bottom: 0; right: 0" color="ducknote">
+            <ion-icon name = "add" size="small"></ion-icon>
+          </ion-fab-button>
+        </ion-avatar>
+      </div>
+      <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start">
+        <ion-title>{{param.getParametre().monStatut}}</ion-title>
+        <ion-note>{{param.getParametre().ajouteStatut}}</ion-note>
+      </div>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="status.aAjouteStatut">
+      <ion-icon name="ellipsis-horizontal"></ion-icon>
+    </ion-buttons>
+  </ion-item>
+</ion-list>

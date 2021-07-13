@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mychatapp-2914b": {
+      "hosting": {
+        "app": [
+          "mychatapp-2914b"
+        ]
+      }
+    }
+  }
+}

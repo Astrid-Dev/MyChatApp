@@ -1,0 +1,24 @@
+ion-segment-button{
+  font-weight: bold;
+  font-size: 1em;
+}
+h1{
+  font-weight: bold;
+}
+
+ion-label
+{
+  font-weight: bold;
+}
+
+app-discussion, app-appels, app-statut
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+
+

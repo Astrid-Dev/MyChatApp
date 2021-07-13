@@ -1,0 +1,38 @@
+ion-item ion-title
+{
+  font-size: 1.1em;
+  padding-left: 0px;
+  font-family: "Nirmala UI";
+}
+
+ion-item
+{
+  height: 11%;
+  margin-bottom: 2%;
+}
+
+ion-header
+{
+  display: flex;
+  align-items: center;
+}
+
+.classItem1
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+ion-item ion-text
+{
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: 0;
+  font-size: 0.8em;
+
+}
+
+.compte ion-title
+{
+  font-size: 0.8em;
+}

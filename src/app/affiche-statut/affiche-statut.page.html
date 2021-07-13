@@ -1,0 +1,26 @@
+<ion-header style="margin-bottom: 0px;" [style]="{backgroundColor: couleurApp.getCouleurApp().fond}">
+  <ion-toolbar [color]="couleurApp.getCouleurApp().toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="status.fermeStatut()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div style="display: flex">
+      <ion-avatar style="width: 50px; height: 50px; border-radius: 50%; margin-right: 0px; background-color: #3a7be0; margin-left: 10px">
+        <img [src]="profil">
+      </ion-avatar>
+      <div style="display: flex; flex-direction: column; margin-left: 0px" [style]="{color: couleurApp.getCouleurApp().texteSimple}">
+        <ion-title style="font-weight: bold">{{nom}}</ion-title>
+        <ion-text style="margin-left: 20px">{{heure | date: param.getParametre().a}}</ion-text>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-slides  #slides [options]="slideOps" (ionSlideDidChange)="slidesChanged(slides)" (ionSlidesDidLoad)="slidesChanged(slides)" style="height: 100%; width: 100%">
+
+  <ion-slide [style]="{background: couleurApp.getCouleurApp().fonstatut, color: couleurApp.getCouleurApp().couleurStatut}" style="width: 100%" *ngFor="let item of status.liste" >
+    <ion-text>{{item.value}}</ion-text>
+  </ion-slide>
+
+</ion-slides>

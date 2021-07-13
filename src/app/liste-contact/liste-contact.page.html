@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar [color]="couleursAppService.getCouleurApp().toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="retour()">
+        <ion-icon [color]="couleursAppService.getCouleurApp().iconFocus" name = "arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="!param.estNouveauGroupe">
+      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus" style="font-weight: bold">{{param.getParametre().contacts}}</ion-title>
+      <ion-text style="margin-left: 20px" [color]="couleursAppService.getCouleurApp().iconFocus">1 {{contact}}</ion-text>
+    </div>
+    <div *ngIf="param.estNouveauGroupe">
+      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus" style="font-weight: bold">{{param.getParametre().nouvGroupe}}</ion-title>
+      <ion-text style="margin-left: 20px" [color]="couleursAppService.getCouleurApp().iconFocus">{{param.getParametre().ajouterParticipant}}</ion-text>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon [color]="couleursAppService.getCouleurApp().iconFocus" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-fab *ngIf="param.estNouveauGroupe" slot="fixed" horizontal="end" vertical="bottom">
+  <ion-fab-button routerLink="../chat" (click)="param.peutCompter = true" color="ducknote" style="height: 50px; width: 50px">
+    <ion-icon name="checkmark" size = "large" color="texte"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [color]="couleursAppService.getCouleurApp().milieu">
+<!--  <ion-list [style] = "{backgroundColor: couleursAppService.getCouleurApp().list}">-->
+<!--    <ion-item (click)="param.estNouveauGroupe = true" lines="none" [color] = "couleursAppService.getCouleurApp().item">-->
+<!--      <ion-fab-button color="ducknote">-->
+<!--        <ion-icon name="people" color="texte"></ion-icon>-->
+<!--      </ion-fab-button>-->
+<!--      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus">{{param.getParametre().nouvGroupe}}</ion-title>-->
+<!--    </ion-item>-->
+<!--    <ion-item lines="none" [color] = "couleursAppService.getCouleurApp().item">-->
+<!--      <ion-fab-button color="ducknote">-->
+<!--        <ion-icon name="person-add" color="texte"></ion-icon>-->
+<!--      </ion-fab-button>-->
+<!--      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus">{{param.getParametre().nouvContact}}</ion-title>-->
+<!--      <ion-buttons slot="end">-->
+<!--        <ion-button>-->
+<!--          <ion-icon [color]="couleursAppService.getCouleurApp().iconApp" name="qr-code"></ion-icon>-->
+<!--        </ion-button>-->
+<!--      </ion-buttons>-->
+<!--    </ion-item>-->
+<!--    <ion-item routerLink="../chat" style="margin-top: 20px" [color] = "couleursAppService.getCouleurApp().item" >-->
+<!--      <ion-fab-button color="ducknote">-->
+<!--        <img [src]="param.listeUtilisateurs[0].photoURL" width="100%" height="100%">-->
+<!--      </ion-fab-button>-->
+<!--      <div>-->
+<!--        <ion-card-title [color]="couleursAppService.getCouleurApp().iconFocus" style="margin-left: 10px; font-weight: bold">{{param.listeUtilisateurs[0].displayName}}</ion-card-title>-->
+<!--        <ion-card-content>-->
+<!--          <ion-note [style]="{color: couleursAppService.getCouleurApp().texteInu, fontSize: '1.2em'}">{{param.listeUtilisateurs[0].actu}}</ion-note>-->
+<!--        </ion-card-content>-->
+<!--      </div>-->
+<!--    </ion-item>-->
+<!--  </ion-list>-->
+
+  <ion-list [style] = "{backgroundColor: couleursAppService.getCouleurApp().list}">
+    <ion-item>
+      <ion-label position="floating">Nom du groupe:</ion-label>
+      <ion-input [(ngModel)]="chatService.nom" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description:</ion-label>
+      <ion-input [(ngModel)]="chatService.description" type="text"></ion-input>
+    </ion-item>
+    <ion-item routerLink="../chat" style="margin-top: 20px" [color] = "couleursAppService.getCouleurApp().item" *ngFor="let a of param.listeUtilisateurs; let i = index">
+      <ion-fab-button color="ducknote">
+        <img [src]="a.photoURL" width="100%" height="100%">
+      </ion-fab-button>
+      <div>
+        <ion-card-title [color]="couleursAppService.getCouleurApp().iconFocus" style="margin-left: 10px; font-weight: bold">{{a.displayName}}</ion-card-title>
+        <ion-card-content>
+          <ion-note [style]="{color: couleursAppService.getCouleurApp().texteInu, fontSize: '1.2em'}">{{a.actu}}</ion-note>
+        </ion-card-content>
+      </div>
+      <ion-buttons slot="end">
+        <ion-button style="background-color: chartreuse" *ngIf="!tab2[i]" (click)="tab2[i] = true">
+          <ion-icon color="success" name = "add" color="texte"></ion-icon>
+        </ion-button>
+        <ion-button  style="background-color: red" *ngIf="tab2[i]" (click)="tab2[i] = false">
+          <ion-icon color = "danger" name = "close" color="texte"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

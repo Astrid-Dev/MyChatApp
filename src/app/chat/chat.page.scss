@@ -1,0 +1,58 @@
+.message{
+  padding: 10px !important;
+  border-radius: 10px !important;
+  margin-bottom: 4px !important;
+  white-space: pre-wrap;
+}
+
+.my-message{
+  background: var(--ion-color-tertiary);
+  color: #fff;
+}
+
+.other-message{
+  background: var(--ion-color-secondary);
+  color: #fff;
+}
+
+.time{
+  color: #dfdfdf;
+  float: right;
+  font-size: small;
+}
+
+.message-input{
+  width: 100%;
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 6px;
+  background: #fff;
+  resize: none;
+  margin-top: 0px;
+  --padding-start: 8px;
+}
+
+ion-grid
+{
+  background-image: url("../../assets/bg.png");
+}
+
+ion-toolbar
+{
+  height: 100%;
+  vertical-align: center;
+  display: flex;
+}
+
+ion-avatar
+{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-left: 0;
+}
+
+ion-grid
+{
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,32 @@
+ion-avatar
+{
+  heigth: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+ion-item{
+  height: 80px;
+}
+.container
+{
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+ion-note
+{
+  margin-left: 18px;
+}
+
+div
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: right;
+  height: 80%;
+  width: 80%;
+}

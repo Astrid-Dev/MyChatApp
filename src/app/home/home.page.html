@@ -1,0 +1,57 @@
+<ion-header no-header [style]="{background: couleurApp.getCouleurApp().fond}" *ngIf="!peutRechercher">
+  <ion-row>
+    <ion-col>
+      <h1 style="margin-top: 10px" [ngStyle]="{color: couleurApp.getCouleurApp().texteFocus}">MyChatApp</h1>
+    </ion-col>
+    <ion-col>
+      <ion-buttons style="margin-top: 10px; margin-left: 60%">
+        <ion-icon class="ion-activatable" name="search" size="large" [color]="couleurApp.getCouleurApp().iconFocus" (click)="onRecherche()"><ion-ripple-effect></ion-ripple-effect></ion-icon>
+        <ion-icon class="ion-activatable" (click)="presentPopover($event)" name = "ellipsis-vertical" size="large" style="margin-left: 35%" [color]="couleurApp.getCouleurApp().iconFocus"><ion-ripple-effect></ion-ripple-effect></ion-icon>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+  <ion-toolbar [color]="couleurApp.getCouleurApp().fond">
+    <ion-segment mode = "md" [(ngModel)]="statut.segment" (ionChange)="segmentChange($event)" [color]="couleurApp.getCouleurApp().segment">
+      <ion-segment-button value="0" id = "camera">
+        <ion-icon name = "camera" class="ion-padding" [color]="couleurApp.getCouleurApp().iconFocus"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="1">
+        <ion-label [style]="{color: couleurApp.getCouleurApp().texteFocus}">{{param.getParametre().disc}}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2" >
+        <ion-label [style]="{color: couleurApp.getCouleurApp().texteFocus}">{{param.getParametre().statut}}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="3">
+        <ion-label [style]="{color: couleurApp.getCouleurApp().texteFocus}">{{param.getParametre().appel}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-searchbar *ngIf="peutRechercher" (ionCancel)="onCancel()" show-cancel-button = "focus" animated cancel-button-text = "Custom cancel"></ion-searchbar>
+
+<ion-content *ngIf="!peutRechercher" [color]="couleurApp.getCouleurApp().milieu">
+  <ion-slides  #slides pager="false" [options]="slideOps" (ionSlideDidChange)="slidesChanged(slides)" (ionSlidesDidLoad)="slidesChanged(slides)" style="height: 100%">
+    <ion-slide>
+      <ion-content>
+        <app-camera></app-camera>
+      </ion-content>
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button (click)="addPhotoToGallery()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-slide>
+    <ion-slide>
+      <app-discussion></app-discussion>
+    </ion-slide>
+    <ion-slide>
+      <app-statut></app-statut>
+    </ion-slide>
+    <ion-slide>
+      <app-appels></app-appels>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

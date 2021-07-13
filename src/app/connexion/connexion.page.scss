@@ -1,0 +1,25 @@
+.errors
+{
+  font-size: small;
+  color: red;
+
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+.passwordIcon
+{
+  font-size: 2rem !important;
+  position: relative !important;
+  top: 22px !important;
+  margin: 0 auto !important;
+}
+
+ion-item ion-label
+{
+  font-size: 0.8em;
+  color: rgba(0,0,0, 0.5);
+}
+

@@ -1,0 +1,18 @@
+<ion-header style="margin-bottom: 0px;" [style]="{backgroundColor: couleurApp.getCouleurApp().fond}">
+  <ion-toolbar [color]="couleurApp.getCouleurApp().toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="status.dismiss2()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="contenuDuMessage !== ''">
+      <ion-button (click)="envoyerStatut()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-textarea [(ngModel)]="contenuDuMessage" [style]="{backgroundColor: couleurApp.getCouleurApp().fonstatut, color: couleurApp.getCouleurApp().couleurStatut}" style="margin: 0px; display: flex; flex-direction: row-reverse;" placeholder="Entrer votre message" autoGrow="true" class="message-input" rows = "1" maxlength="400">
+
+</ion-textarea>

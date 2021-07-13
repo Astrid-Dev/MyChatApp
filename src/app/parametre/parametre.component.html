@@ -1,0 +1,223 @@
+<ion-header [style]="{background: couleurApp.fond, height: '10%'}">
+  <ion-buttons>
+    <ion-icon [color]="couleurApp.iconFocus" (click)="fermerParametre()" name = "arrow-back-outline" size = "large"></ion-icon>
+    <ion-title [color]="couleurApp.iconFocus" style="font-size: 1.6em">{{titreParametre}}</ion-title>
+  </ion-buttons>
+</ion-header>
+<ion-content [color]="couleurApp.milieu">
+
+  <!--Parametre-->
+  <ion-list *ngIf="titreParametre === param.getParametre().parametre" [style]="{backgroundColor: couleurApp.fond2}">
+    <ion-item [color]="couleurApp.milieu" class="ion-activatable" (click)="titreParametre = param.getParametre().profil">
+      <div style=" margin-bottom: 2%; width: 80px; height: 80px; border-radius: 50%"><img width="80px" height="80px" style="border-radius: 50%" [src]="param.utilisateur.photoURL"></div>
+      <ion-buttons class="classItem1" style="margin-left: 10px" (click)="titreParametre = param.getParametre().profil">
+        <ion-title [style]="{color: couleurApp.texteFocus}" style="font-size: 1.2em; font-weight: bold;">{{param.utilisateur.displayName}}</ion-title>
+        <ion-text [style]="{color: couleurApp.texteInu}">{{param.utilisateur.actu}}</ion-text>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name = "qr-code" [color]="couleurApp.iconApp" size="large"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "key" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons class="classItem1" (click)="titreParametre = param.getParametre().compte">
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().compte}}</ion-title>
+        <ion-text [style]="{color: couleurApp.texteInu}">{{param.getParametre().descripCompte}}</ion-text>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable" (click)="titreParametre = param.getParametre().discuss">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "chatbox" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons class="classItem1">
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().discuss}}</ion-title>
+        <ion-text [style]="{color: couleurApp.texteInu}">{{param.getParametre().descripDiscuss}}</ion-text>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "notifications" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons class="classItem1">
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().notif}}</ion-title>
+        <ion-text [style]="{color: couleurApp.texteInu}">{{param.getParametre().descripNotif}}</ion-text>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable" (click)="presentAlert()">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "language" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons class="classItem1">
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().langue}}</ion-title>
+        <ion-text [style]="{color: couleurApp.texteInu}">{{param.getParametre().descripLangue}}</ion-text>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "help" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons class="classItem1">
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().aide}}</ion-title>
+        <ion-text [style]="{color: couleurApp.texteInu}" style="margin-bottom: 4%">{{param.getParametre().descripAide}}</ion-text>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "people" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().invite}}</ion-title>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+  </ion-list>
+
+  <!--Compte-->
+  <ion-list [style]="{backgroundColor: couleurApp.fond2}" *ngIf="titreParametre === param.getParametre().compte" class="compte">
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "lock-closed" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().confident}}</ion-title>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "shield-half" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().securite}}</ion-title>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "checkmark" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().verif}}</ion-title>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "log-out-outline" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().changeNum}}</ion-title>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "reader" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().demandeInfoCompte}}</ion-title>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon [color]="couleurApp.iconApp" name = "trash" size = "large"></ion-icon>
+      </ion-buttons>
+      <ion-buttons>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().suppCompte}}</ion-title>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+  </ion-list>
+
+
+<!--  Profil-->
+
+  <ion-list [style]="{backgroundColor: couleurApp.fond2}" *ngIf="titreParametre === param.getParametre().profil">
+    <div style="display: flex; justify-content: center; text-align: center;margin-top: 20px">
+      <div style="height: 200px; width: 200px; text-align: center; display: inline" class = "flex">
+        <div class="img-box" style="position: relative; overflow: hidden">
+          <img [src]="param.utilisateur.photoURL" width="200px" height="200px" style="border-radius: 50%; display: block">
+          <ion-fab-button color="ducknote" style="position: absolute; bottom: 0; right: 0">
+            <ion-icon color="texte" name="camera" [color]="couleurApp.iconSimple"></ion-icon>
+          </ion-fab-button>
+        </div>
+      </div>
+    </div>
+    <ion-item [color]="couleurApp.milieu" class="ion-activatable" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon name="person" [color]="couleurApp.iconApp"></ion-icon>
+      </ion-buttons>
+      <div style="display: flex; width: 100%; flex-direction: column; margin-top: 50px">
+        <div style="display: flex">
+          <ion-title [style]="{color: couleurApp.texteFocus}"><span [style]="{color: couleurApp.texteSimple}">{{param.getParametre().nom}}</span><br>
+            <span style="font-weight: bold" [style]="{color: couleurApp.texteFocus}">{{param.utilisateur.displayName}}</span></ion-title>
+        </div>
+        <ion-text [style]="{color: couleurApp.texteInu}" style="display: block;margin-top: 10px; margin-bottom: 10px; vertical-align: bottom">{{param.getParametre().infoNomUtilisateur}}</ion-text>
+      </div>
+      <ion-buttons slot="end">
+        <ion-icon name="pencil" color="medium" size="large"></ion-icon>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+
+    <ion-item [color]="couleurApp.milieu" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon name="person" [color]="couleurApp.iconApp"></ion-icon>
+      </ion-buttons>
+      <div>
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().actu}}
+        </ion-title>
+        <div style="display: flex;">
+          <p style="margin-top: 10px; margin-bottom: 10px;">{{param.utilisateur.actu}}</p>
+        </div>
+      </div>
+      <ion-buttons slot="end">
+        <ion-icon name="pencil" color="medium" size="large"></ion-icon>
+      </ion-buttons>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu" lines="none" class="ion-activatable">
+      <ion-buttons slot="start">
+        <ion-icon name="call" [color]="couleurApp.iconApp"></ion-icon>
+      </ion-buttons>
+      <div style="display: flex; flex-direction: column" >
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().telephone}}</ion-title>
+        <p style="margin-top: 10px; margin-bottom: 10px">{{param.utilisateur.number}}</p>
+      </div>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+  </ion-list>
+
+<!--  Discussions-->
+
+  <ion-list [style]="{backgroundColor: couleurApp.fond2}" *ngIf="titreParametre === param.getParametre().discuss">
+    <ion-item [color]="couleurApp.milieu" class="ion-activatable" (click)="presentAlert2()">
+      <ion-buttons slot="start">
+        <ion-icon name="contrast" size="large" [color]="couleurApp.iconApp"></ion-icon>
+      </ion-buttons>
+      <div style="display: flex; flex-direction: column">
+        <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().theme}}</ion-title>
+        <ion-text  [style]="{color: couleurApp.texteInu}" style="font-size: 1em; margin-top: 8px; margin-bottom: 8px">{{getTheme()}}</ion-text>
+      </div>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+    <ion-item [color]="couleurApp.milieu">
+      <ion-buttons  slot="start">
+        <ion-icon name = "camera" size="large" [color]="couleurApp.iconApp"></ion-icon>
+      </ion-buttons>
+      <ion-title [style]="{color: couleurApp.texteSimple}">{{param.getParametre().fondDEcran}}</ion-title>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-item>
+  </ion-list>
+</ion-content>

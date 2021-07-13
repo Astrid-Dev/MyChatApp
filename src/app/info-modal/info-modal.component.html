@@ -1,0 +1,118 @@
+<!--<ion-header *ngIf="!param.estNouveauGroupe" style="width: 100%; height: 50%">-->
+<!--  <div class="img-box" style="height: 100%; width: 100%; background-color: red">-->
+<!--    <img [src]="param.monProfile" width="100%" height="100%">-->
+<!--    <ion-buttons style="position: absolute; top: 0; left: 5px">-->
+<!--      <ion-button (click)="chatService.fermerInfoChat()">-->
+<!--        <ion-icon slot="icon-only" size="large" name="arrow-back"></ion-icon>-->
+<!--      </ion-button>-->
+<!--    </ion-buttons>-->
+<!--    <h2 style="position: absolute; bottom: 0; left: 15px; font-size: 3em; font-weight: bold">-->
+<!--      Un nom-->
+<!--    </h2>-->
+<!--  </div>-->
+<!--</ion-header>-->
+<!--<ion-content *ngIf="!param.estNouveauGroupe" [color]="couleursAppService.getCouleurApp().milieu">-->
+<!--  <ion-list style="margin-top: 20px" [style] = "{backgroundColor: couleursAppService.getCouleurApp().list}">-->
+<!--    <ion-item-divider [color] = "couleursAppService.getCouleurApp().iconApp">-->
+<!--      <ion-label>Actu et numéro de téléphone</ion-label>-->
+<!--    </ion-item-divider>-->
+<!--    <ion-item [color] = "couleursAppService.getCouleurApp().item">-->
+<!--      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus">Une actu bla bla bla</ion-title>-->
+<!--    </ion-item>-->
+<!--    <ion-item [color] = "couleursAppService.getCouleurApp().item">-->
+<!--      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus">6 80 12 78 54</ion-title>-->
+<!--    </ion-item>-->
+<!--    <ion-item-divider (click)="peutLister = true" [color] = "couleursAppService.getCouleurApp().iconApp">-->
+<!--      <ion-label>Groupes en commnun</ion-label>-->
+<!--      <ion-buttons slot="end" *ngIf="!peutLister">-->
+<!--        <ion-button (click)="peutLister = true">-->
+<!--          <ion-icon name="chevron-down-outline"></ion-icon>-->
+<!--          <ion-text>3</ion-text>-->
+<!--        </ion-button>-->
+<!--      </ion-buttons>-->
+<!--    </ion-item-divider>-->
+<!--    <ion-item-divider (click)="peutLister = false" *ngIf="peutLister" [color] = "couleursAppService.getCouleurApp().iconApp">-->
+<!--      <ion-label>Groupes en commnun</ion-label>-->
+<!--      <ion-buttons slot="end">-->
+<!--        <ion-button (click)="peutLister = false">-->
+<!--          <ion-icon name="chevron-up-outline"></ion-icon>-->
+<!--        </ion-button>-->
+<!--      </ion-buttons>-->
+<!--    </ion-item-divider>-->
+<!--  </ion-list>-->
+<!--</ion-content>-->
+
+<ion-header style="width: 100%; height: 54%" >
+  <div class="img-box" style="height: 100%; width: 100%; background-color: red">
+    <img [src]="param.monProfile" width="100%" height="100%">
+    <ion-buttons style="position: absolute; top: 0; left: 5px">
+      <ion-button (click)="chatService.fermerInfoChat()">
+        <ion-icon slot="icon-only" size="large" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons style="position: absolute; top: 0; right: 5px">
+      <ion-button>
+        <ion-icon slot="icon-only" size="large" name="person-add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <h2 style="position: absolute; bottom: 0; left: 15px; font-size: 3em; font-weight: bold">
+      {{param.listeUtilisateurs[0].displayName}}
+    </h2>
+  </div>
+</ion-header>
+<ion-content [color]="couleursAppService.getCouleurApp().milieu">
+  <ion-list [style] = "{backgroundColor: couleursAppService.getCouleurApp().list}">
+    <ion-item-divider [color] = "couleursAppService.getCouleurApp().iconApp">
+      <ion-label>Description</ion-label>
+    </ion-item-divider>
+    <ion-item [color] = "couleursAppService.getCouleurApp().item">
+      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus">{{param.listeUtilisateurs[1].actu}}</ion-title>
+    </ion-item>
+    <ion-item-divider (click)="peutLister = true" [color] = "couleursAppService.getCouleurApp().iconApp">
+      <ion-label>Participants</ion-label>
+      <ion-buttons slot="end" *ngIf="!peutLister">
+        <ion-button (click)="peutLister = true">
+          <ion-icon name="chevron-down-outline"></ion-icon>
+          <ion-text>1</ion-text>
+        </ion-button>
+      </ion-buttons>
+    </ion-item-divider>
+    <ion-item>
+      <ion-item style="margin-top: 20px" [color] = "couleursAppService.getCouleurApp().item">
+        <ion-fab-button color="ducknote">
+          <img [src]="param.listeUtilisateurs[0].photoURL" width="100%" height="100%">
+        </ion-fab-button>
+        <div>
+          <ion-card-title [color]="couleursAppService.getCouleurApp().iconFocus" style="margin-left: 10px; font-weight: bold">{{param.listeUtilisateurs[0].displayName}}</ion-card-title>
+          <ion-card-content>
+            <ion-note [style]="{color: couleursAppService.getCouleurApp().texteInu, fontSize: '1.2em'}">{{param.listeUtilisateurs[0].actu}}</ion-note>
+          </ion-card-content>
+        </div>
+      </ion-item>
+    </ion-item>
+    <ion-item-divider (click)="peutLister = false" *ngIf="peutLister" [color] = "couleursAppService.getCouleurApp().iconApp">
+      <ion-label>Participants</ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="peutLister = false">
+          <ion-icon name="chevron-up-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item-divider>
+    <ion-item [color] = "couleursAppService.getCouleurApp().item" style="margin-top: 10px">
+      <ion-fab-button color="ducknote">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus">Ajouter des participants</ion-title>
+    </ion-item>
+    <ion-item [color] = "couleursAppService.getCouleurApp().item">
+      <ion-fab-button color="ducknote">
+        <ion-icon name="link"></ion-icon>
+      </ion-fab-button>
+      <ion-title [color]="couleursAppService.getCouleurApp().iconFocus">Inviter via un lien</ion-title>
+    </ion-item>
+    <ion-item style="margin-top: 10px" [color] = "couleursAppService.getCouleurApp().item">
+      <ion-icon color="danger" name = "log-out-outline" style="margin-right: 8px"></ion-icon>
+      <ion-label color="danger">Quitter le groupe</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button routerLink="../liste-contact" [color]="couleursAppService.getCouleurApp().iconApp">
+    <ion-icon name = "chatbox-ellipses" [color]="couleursAppService.getCouleurApp().iconSimple"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content>
+  <ion-list [style]="{backgroundColor: couleursAppService.getCouleurApp().fond2}">
+    <ion-item *ngIf="param.peutAfficher" [color]="couleursAppService.getCouleurApp().milieu">
+      <ion-avatar style="width: 60px; height: 60px">
+          <img [src]="param.listeUtilisateurs[0].photoURL" width="60px" height="60px">
+      </ion-avatar>
+      <div>
+        <ion-card-title [color]="couleursAppService.getCouleurApp().iconFocus" style="margin-left: 10px; font-weight: bold">{{param.listeUtilisateurs[0].displayName}}</ion-card-title>
+        <ion-card-content>
+          <ion-note [style]="{color: couleurApp.texteInu, fontSize: '1.2em'}">{{param.dernierMessage}}</ion-note>
+        </ion-card-content>
+      </div>
+      <ion-buttons slot="end" style="display: flex; flex-direction: column;">
+        <ion-note [style]="{color: couleurApp.texteInu}">{{heure | date: "time"}}</ion-note>
+        <ion-badge color="ducknote" *ngIf="param.peutCompter">1</ion-badge>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>
